@@ -1,0 +1,3 @@
+/Users/aaronher/Desktop/serialWrapper/build/CMakeFiles/serialWrapper.dir
+/Users/aaronher/Desktop/serialWrapper/build/CMakeFiles/edit_cache.dir
+/Users/aaronher/Desktop/serialWrapper/build/CMakeFiles/rebuild_cache.dir
