@@ -74,10 +74,6 @@ class GPSMessage:
         self.unimplemented = False
 
         match(self.messageType):
-            case "DTM": # Datum Reference
-                self.unimplemented = True
-            case "GBS": # Satellite Fault Detection
-                self.unimplemented = True
             case "GGA": # GNSS Fix Data
                 # print(args)
                 self.valid = args[6] != "0"
@@ -123,12 +119,6 @@ class GPSMessage:
                 for i in range(3, 15):
                     if(len(args[i]) != 0):
                         self.satellitesInView.append(int(args[i]))
-                
-            case "GST": # GNSS Pseudo Range Error Statistics
-                self.unimplemented = True
-            case "GSV": # Satellites in View
-                # pass
-                self.unimplemented = True
             case "RMC": # Recommended Minimum Data
                 self.valid = args[2] != "0"
                 self.fixed = self.valid
@@ -139,20 +129,11 @@ class GPSMessage:
                         self.latitude *= -1;
                     self.longitude = int(args[5][0:3]) + float(args[5][3:]) / 60
                     if(args[6] == "W"):
-                        self.longitude *= -1
-                    
+                        self.longitude *= -1 
 
                     self.speed = float(args[7]) if(len(args[7])) else math.nan
                     self.courseOverGround = float(args[8]) if(len(args[8])) else math.nan
                     self.date = (int(args[9][0:2]),int(args[9][2:4]), int(args[9][4:]))
-            case "THS": # True Heading and Status
-                self.unimplemented = True
-            case "TXT": # Text Transmission
-                self.unimplemented = True
-            case "VTG": # Course over ground and Ground speed
-                pass
-            case "ZDA": # Time and Date
-                self.unimplemented = True
             case _:
                 raise Exception("Invalid NMEA Message")
 
